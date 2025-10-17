@@ -1,0 +1,1 @@
+Place your GCMCo.png logo in this folder before uploading to GitHub.
