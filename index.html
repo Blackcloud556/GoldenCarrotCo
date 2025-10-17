@@ -1,20 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Golden Carrot — Mining Co.</title>
-<link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Carrot</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        img {
+            max-width: 300px;
+            height: auto;
+            filter: drop-shadow(0 0 15px #ffae00);
+        }
+        p {
+            margin: 25px 0 10px;
+            font-size: 1.2rem;
+            color: #ffae00;
+            letter-spacing: 2px;
+        }
+        .contact {
+            margin-top: 30px;
+            background-color: #ffae00;
+            color: #000;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+        .contact:hover {
+            background-color: #ffc94d;
+        }
+        footer {
+            position: absolute;
+            bottom: 15px;
+            font-size: 0.8rem;
+            color: #444;
+        }
+    </style>
 </head>
 <body>
-  <main class="wrap">
-    <img class="logo" src="GCMCo.png" alt="Golden Carrot logo">
-    <h1 class="title">GOLDEN CARROT</h1>
-    <p class="tag">Mining Co. — Design • Support • Systems</p>
-  </main>
-
-  <a class="cta" href="mailto:info@goldencarrot.co">Contact — info@goldencarrot.co</a>
-
-  <footer class="footer">© 2025 Golden Carrot</footer>
+    <img src="GCMCo.png" alt="Golden Carrot Logo">
+    <p>Carrot &middot; Stick &middot; Balance</p>
+    <a href="mailto:info@goldencarrot.co" class="contact">Contact — info@goldencarrot.co</a>
+    <footer>© 2025 Golden Carrot</footer>
 </body>
 </html>
