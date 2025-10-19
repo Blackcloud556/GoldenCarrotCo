@@ -20,36 +20,28 @@ header,footer{border-block:1px solid var(--line)}
 .tag{color:var(--fg-400); font-size:.8rem; letter-spacing:.2em}
 h1{font-size:2.5rem; font-weight:800}
 .sub{color:var(--fg-400)}
-#carrot{margin:32px auto; width:200px; filter: drop-shadow(0 0 22px rgba(140,140,140,.35));}
 .tagline{color:var(--fg-400); margin-top:8px; letter-spacing:.2em}
-.hero::before{content:""; position:absolute; inset:0; background:radial-gradient(rgba(255,255,255,0.06), transparent 60%);}
-footer .inner {
-  font-size: 0.75rem;                 /* smaller */
-  color: rgba(255, 255, 255, 0.38);   /* dimmer */
-  letter-spacing: 0.08em;             /* crisp, deliberate */
-}
-/* your existing CSS ends here */
-.hero::before {
+
+/* radial glow from center */
+.hero::before{
   content:"";
   position:absolute;
   inset:0;
   background:radial-gradient(rgba(255,255,255,0.06), transparent 60%);
 }
 
-/* ---- ADD NEW STUFF BELOW THIS LINE ---- */
-
-/* Footer cleanup */
+/* Dim the footer */
 footer .inner {
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.38);
   letter-spacing: 0.08em;
 }
 
-/* Carrot breathing glow */
+/* Carrot with breathing glow */
 #carrot {
-  margin: 32px auto;
-  width: 200px;
-  filter: drop-shadow(0 0 18px rgba(140,140,140,.28));
+  margin:32px auto;
+  width:200px;
+  height:auto;
   animation: carrotGlow 4.5s ease-in-out infinite;
 }
 
@@ -59,6 +51,7 @@ footer .inner {
   100% { filter: drop-shadow(0 0 14px rgba(140,140,140,.22)); }
 }
 
+/* Without motion (accessibility) */
 @media (prefers-reduced-motion: reduce) {
   #carrot { animation: none; }
 }
