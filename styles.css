@@ -55,3 +55,7 @@ footer .inner {
 @media (prefers-reduced-motion: reduce) {
   #carrot { animation: none; }
 }
+/* Hide navigation until pages exist */
+.hidden {
+  display: none;
+}
