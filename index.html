@@ -1,57 +1,181 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Golden Carrot</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #000;
-            color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        img {
-            max-width: 300px;
-            height: auto;
-            filter: drop-shadow(0 0 15px #ffae00);
-        }
-        p {
-            margin: 25px 0 10px;
-            font-size: 1.2rem;
-            color: #ffae00;
-            letter-spacing: 2px;
-        }
-        .contact {
-            margin-top: 30px;
-            background-color: #ffae00;
-            color: #000;
-            padding: 10px 25px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s ease;
-        }
-        .contact:hover {
-            background-color: #ffc94d;
-        }
-        footer {
-            position: absolute;
-            bottom: 15px;
-            font-size: 0.8rem;
-            color: #444;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Golden Carrot</title>
+  <meta name="color-scheme" content="dark light" />
+  <!-- Optional font; remove if you want pure system font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-950:#0a0a0a;      /* page background */
+      --fg-100:#f3f3f3;      /* primary text */
+      --fg-400:#a3a3a3;      /* secondary text */
+      --line:#1f1f1f;        /* borders */
+      /* carrot accent exists only in the image itself */
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+      background: var(--bg-950);
+      color: var(--fg-100);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ----- Layout ----- */
+    .wrap{
+      min-height:100dvh;
+      display:grid;
+      grid-template-rows: auto 1fr auto;
+    }
+    header, footer{
+      border-block: 1px solid var(--line);
+    }
+    header .inner, footer .inner, main .inner{
+      width:min(1100px, 92vw);
+      margin-inline:auto;
+      padding: 16px 0;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    header .brand{
+      display:flex; align-items:center; gap:.6rem;
+      color:#d0d0d0; letter-spacing:.18em; font-size:.85rem; font-weight:600;
+      text-transform:uppercase;
+    }
+    header .dot{ width:6px; height:6px; border-radius:50%; background:#5e5e5e; opacity:.7 }
+
+    /* ----- Hero ----- */
+    .hero{
+      position:relative;
+      overflow:hidden;
+      display:grid;
+      place-items:center;
+    }
+    .hero .stage{
+      width:min(1100px, 92vw);
+      padding: clamp(64px, 12vh, 120px) 0;
+      text-align:center;
+      position:relative;
+      z-index:1;
+    }
+    .tag{
+      color:var(--fg-400);
+      letter-spacing:.25em;
+      font-size:.72rem;
+      text-transform:uppercase;
+    }
+    h1{
+      margin:12px 0 8px;
+      font-weight:800;
+      font-size:clamp(28px, 5vw, 56px);
+      line-height:1.05;
+    }
+    p.sub{
+      margin: 6px auto 0;
+      max-width: 46ch;
+      color: var(--fg-400);
+    }
+
+    /* Carrot image w/ GRAY glow */
+    #carrot{
+      display:block;
+      width:min(320px, 60vw);
+      height:auto;
+      margin: 28px auto 0;
+      /* soft gray aura; raise radius or alpha to punch more */
+      filter: drop-shadow(0 0 22px rgba(140,140,140,.35));
+    }
+
+    /* ----- Abstract background (grayscale only) ----- */
+    .hero::before, .hero::after{
+      content:""; position:absolute; inset:0; pointer-events:none;
+    }
+    /* radial vignette */
+    .hero::before{
+      background:
+        radial-gradient(ellipse at center,
+          rgba(255,255,255,0.06) 0%,
+          rgba(255,255,255,0.03) 25%,
+          rgba(0,0,0,0) 60%);
+      z-index:0;
+    }
+    /* diagonal lines + film grain combo via SVG data-uri */
+    .hero::after{
+      opacity:.08; mix-blend-mode:normal; z-index:0;
+      background-image:
+        /* diagonal lines */
+        url('data:image/svg+xml;utf8,\
+<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 120 120\" preserveAspectRatio=\"none\">\
+<defs><pattern id=\"d\" width=\"12\" height=\"12\" patternUnits=\"userSpaceOnUse\" patternTransform=\"rotate(35)\">\
+<rect width=\"12\" height=\"12\" fill=\"none\"/>\
+<rect x=\"0\" y=\"0\" width=\"2\" height=\"12\" fill=\"%23ffffff\" opacity=\"0.25\"/>\
+</pattern></defs>\
+<rect width=\"100%\" height=\"100%\" fill=\"url(%23d)\"/>\
+</svg>');
+      background-size: cover;
+    }
+    /* subtle noise layer on entire page */
+    .noise{
+      position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.06;
+      background-image:url('data:image/svg+xml;utf8,\
+<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\">\
+<filter id=\"n\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.8\" numOctaves=\"2\" stitchTiles=\"stitch\"/>\
+<feColorMatrix type=\"saturate\" values=\"0\"/>\
+<feComponentTransfer><feFuncA type=\"table\" tableValues=\"0 0.035\"/></feComponentTransfer></filter>\
+<rect width=\"100\" height=\"100\" filter=\"url(%23n)\"/>\
+</svg>');
+      background-size: 600px 600px;
+    }
+
+    footer .inner{ color:#7a7a7a; font-size:.9rem }
+
+    /* Accessibility: honor reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+    }
+  </style>
 </head>
 <body>
-    <img src="GCMCo.png" alt="Golden Carrot Logo">
-    <p>Carrot &middot; Stick &middot; Balance</p>
-    <a href="mailto:info@goldencarrot.co" class="contact">Contact — info@goldencarrot.co</a>
-    <footer>© 2025 Golden Carrot</footer>
+  <div class="wrap">
+    <header>
+      <div class="inner">
+        <div class="brand">
+          <div class="dot"></div>
+          <span>GOLDEN CARROT</span>
+        </div>
+        <div style="color:#8a8a8a; font-size:.8rem;">parent • studio</div>
+      </div>
+    </header>
+
+    <main class="hero">
+      <div class="noise" aria-hidden="true"></div>
+
+      <div class="stage">
+        <div class="tag">MONOCHROME / QUIET</div>
+        <h1>Only the carrot has color.</h1>
+        <p class="sub">Dark, modern, and simple. The mark does the talking.</p>
+
+        <!-- Replace Carrot.png with your file name (PNG/SVG recommended) -->
+        <img id="carrot" src="Carrot.png" alt="Golden Carrot logo">
+      </div>
+    </main>
+
+    <footer>
+      <div class="inner">
+        <div>© <span id="y"></span> Golden Carrot</div>
+        <div>hello@goldencarrot.co</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // year in footer
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
