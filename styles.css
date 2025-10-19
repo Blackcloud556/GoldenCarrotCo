@@ -28,3 +28,37 @@ footer .inner {
   color: rgba(255, 255, 255, 0.38);   /* dimmer */
   letter-spacing: 0.08em;             /* crisp, deliberate */
 }
+/* your existing CSS ends here */
+.hero::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(rgba(255,255,255,0.06), transparent 60%);
+}
+
+/* ---- ADD NEW STUFF BELOW THIS LINE ---- */
+
+/* Footer cleanup */
+footer .inner {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.38);
+  letter-spacing: 0.08em;
+}
+
+/* Carrot breathing glow */
+#carrot {
+  margin: 32px auto;
+  width: 200px;
+  filter: drop-shadow(0 0 18px rgba(140,140,140,.28));
+  animation: carrotGlow 4.5s ease-in-out infinite;
+}
+
+@keyframes carrotGlow {
+  0%   { filter: drop-shadow(0 0 14px rgba(140,140,140,.22)); }
+  50%  { filter: drop-shadow(0 0 28px rgba(140,140,140,.42)); }
+  100% { filter: drop-shadow(0 0 14px rgba(140,140,140,.22)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #carrot { animation: none; }
+}
